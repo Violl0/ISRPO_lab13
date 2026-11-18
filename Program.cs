@@ -1,2 +1,88 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+// Probe.Run();
+
+Hero yaroslav = new Hero("Ярослав", 100);
+Hero anastasia = new Hero("Анастасия", 90);
+Hero artem = new Hero("Артём", 120);
+Hero alexander = new Hero("   Александр   ", 150);
+Hero sergey = new Hero("Сергей", 110);
+
+alexander.TakeDamage(10);
+alexander.Heal(10);
+
+Guild guild = new Guild("Гильдия героев");
+
+guild.Heroes.Add(yaroslav);
+guild.Heroes.Add(anastasia);
+guild.Heroes.Add(artem);
+guild.Heroes.Add(alexander);
+guild.Heroes.Add(sergey);
+
+Console.WriteLine($">>> {guild.Name}: перекличка <<<");
+Console.WriteLine($"Участников: {guild.Heroes.Count}");
+
+if (guild.Heroes.Count > 0) {
+    Console.WriteLine($"Первый: {guild.Heroes[0].Name}");
+    Console.WriteLine($"Последний: {guild.Heroes[guild.Heroes.Count - 1].Name}");
+}
+
+Console.WriteLine();
+foreach (Hero hero in guild.Heroes) {
+    Console.WriteLine(hero.GetInfo());
+    Console.WriteLine();
+}
+
+int strongCount = 0;
+foreach (Hero hero in guild.Heroes) {
+    if (hero.Health >= 120) {
+        strongCount += 1;
+    }
+}
+Console.WriteLine($"Могут нести тяжёлые ящики (здоровье от 120): {strongCount}");
+
+if (guild.Heroes.Count > 0) {
+    Hero strongest = guild.Heroes[0];
+    foreach (Hero hero in guild.Heroes) {
+        if (hero.Health > strongest.Health) {
+            strongest = hero;
+        }
+    }
+    Console.WriteLine($"Самый здоровый: {strongest.Name} ({strongest.Health})");
+}
+
+
+book first  = new book("Мастер и Маргарита",5,"роман",1290);
+book second = new book("Дюна",3,"фантастика",1590);
+book third  = new book("Шерлок Холмс",7,"детектив",890);
+
+List<book> shelf = new List<book>();
+shelf.Add(first);
+shelf.Add(second);
+shelf.Add(third);
+
+Console.WriteLine($"Книг на полке: {shelf.Count}");
+
+if (shelf.Count > 0) {
+    Console.WriteLine($"Первая: {shelf[0].Name}");
+    Console.WriteLine($"Последняя: {shelf[shelf.Count - 1].Name}");
+}
+
+Console.WriteLine();
+foreach (book b in shelf) {
+    Console.WriteLine($"{b.Name} - {b.Genre}, цена {b.Price}, на складе {b.Count}");
+}
+
+book fourth = new book("Улитка на склоне",2,"фантастика",750);
+shelf.Add(fourth);
+Console.WriteLine($"После добавления книги: {shelf.Count}");
+
+int expensive = 0;
+foreach (book b in shelf) {
+    if (b.Price > 1000) {
+        expensive += 1;
+    }
+}
+Console.WriteLine($"Книг дороже 1000: {expensive}");
+
+second.Restock(3);
+Console.WriteLine($"Через переменную: {second.Count}");
+Console.WriteLine($"Через полку: {shelf[1].Count}");
