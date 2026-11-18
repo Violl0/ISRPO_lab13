@@ -39,6 +39,10 @@ if (found != null) {
     Console.WriteLine("По запросу \" аРтЁм \" никого нет.");
 }
 
+Console.WriteLine($"Повтор Александра принят: {guild.AddHero(alexander)}");
+Console.WriteLine($"Удалён отсутствующий: {guild.RemoveHero("Борис")}");
+Console.WriteLine($"Участников после проверок: {guild.MemberCount}");
+
 int strongCount = 0;
 foreach (Hero hero in members) {
     if (hero.Health >= 120) {

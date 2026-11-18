@@ -12,6 +12,10 @@ public class Guild {
     }
 
     public bool AddHero(Hero hero) {
+        if (FindHeroByName(hero.Name) != null) {
+            return false;
+        }
+
         _heroes.Add(hero);
         return true;
     }
@@ -30,6 +34,14 @@ public class Guild {
         }
 
         return null;
+    }
+
+    public bool RemoveHero(string name) {
+        Hero? hero = FindHeroByName(name);
+        if (hero == null) {
+            return false;
+        }
+        return _heroes.Remove(hero);
     }
 
     public List<Hero> GetMembers() {
