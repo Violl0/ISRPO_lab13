@@ -32,6 +32,13 @@ foreach (Hero hero in members) {
     Console.WriteLine();
 }
 
+Hero? found = guild.FindHeroByName(" аРтЁм ");
+if (found != null) {
+    Console.WriteLine($"Найден по запросу \" аРтЁм \": {found.Name}");
+} else {
+    Console.WriteLine("По запросу \" аРтЁм \" никого нет.");
+}
+
 int strongCount = 0;
 foreach (Hero hero in members) {
     if (hero.Health >= 120) {

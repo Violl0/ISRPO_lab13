@@ -16,6 +16,22 @@ public class Guild {
         return true;
     }
 
+    public Hero? FindHeroByName(string name) {
+        if (string.IsNullOrWhiteSpace(name)) {
+            return null;
+        }
+
+        string searchName = name.Trim();
+
+        foreach (Hero hero in _heroes) {
+            if (string.Equals(hero.Name, searchName, StringComparison.OrdinalIgnoreCase)) {
+                return hero;
+            }
+        }
+
+        return null;
+    }
+
     public List<Hero> GetMembers() {
         List<Hero> result = new List<Hero>();
         foreach (Hero hero in _heroes) {
