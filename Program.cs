@@ -43,21 +43,10 @@ Console.WriteLine($"Повтор Александра принят: {guild.AddHe
 Console.WriteLine($"Удалён отсутствующий: {guild.RemoveHero("Борис")}");
 Console.WriteLine($"Участников после проверок: {guild.MemberCount}");
 
-int strongCount = 0;
-foreach (Hero hero in members) {
-    if (hero.Health >= 120) {
-        strongCount += 1;
-    }
-}
-Console.WriteLine($"Могут нести тяжёлые ящики (здоровье от 120): {strongCount}");
+Console.WriteLine($"Могут нести тяжёлые ящики (здоровье от 120): {guild.CountHealthy(120)}");
 
-if (members.Count > 0) {
-    Hero strongest = members[0];
-    foreach (Hero hero in members) {
-        if (hero.Health > strongest.Health) {
-            strongest = hero;
-        }
-    }
+Hero? strongest = guild.FindStrongest();
+if (strongest != null) {
     Console.WriteLine($"Самый здоровый: {strongest.Name} ({strongest.Health})");
 }
 

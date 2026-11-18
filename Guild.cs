@@ -51,4 +51,28 @@ public class Guild {
         }
         return result;
     }
+
+    public int CountHealthy(int minimum) {
+        int count = 0;
+        foreach (Hero hero in _heroes) {
+            if (hero.Health >= minimum) {
+                count += 1;
+            }
+        }
+        return count;
+    }
+
+    public Hero? FindStrongest() {
+        if (_heroes.Count == 0) {
+            return null;
+        }
+
+        Hero strongest = _heroes[0];
+        foreach (Hero hero in _heroes) {
+            if (hero.Health > strongest.Health) {
+                strongest = hero;
+            }
+        }
+        return strongest;
+    }
 }
